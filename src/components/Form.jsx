@@ -30,6 +30,7 @@ class Form extends React.Component {
               name="cardName"
               data-testid="name-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -42,6 +43,7 @@ class Form extends React.Component {
               name="cardDescription"
               data-testid="description-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -54,6 +56,7 @@ class Form extends React.Component {
               name="cardAttr1"
               data-testid="attr1-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -66,6 +69,7 @@ class Form extends React.Component {
               name="cardAttr2"
               data-testid="attr2-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -78,6 +82,7 @@ class Form extends React.Component {
               name="cardAttr3"
               data-testid="attr3-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -90,6 +95,7 @@ class Form extends React.Component {
               name="cardImage"
               data-testid="image-input"
               onChange={ onInputChange }
+              required
             />
           </label>
 
@@ -101,6 +107,7 @@ class Form extends React.Component {
               name="cardRare"
               data-testid="rare-input"
               onChange={ onInputChange }
+              required
             >
               <option value="normal">normal</option>
               <option value="raro">raro</option>

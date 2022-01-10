@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import App from '../App';
 
-xdescribe("5 - Faça a validação do botão de Salvar no formulário", () => {
+describe("5 - Faça a validação do botão de Salvar no formulário", () => {
   it("Será validado se o botão `salvar` está desabilitado quando a página é renderizada pela primeira vez", () => {
     render(<App />);
     

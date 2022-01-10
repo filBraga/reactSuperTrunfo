@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.titleClass {
+  padding: 10px;
+  margin: 10px;
+}
+
 .formClass {
   padding: 10px;
   margin: 10px;
@@ -22,5 +27,18 @@ code {
 }
 
 .cardClass {
-  text-align: center;
+  background-color: whitesmoke;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  /* height: 500px; */
+  margin: 10px;
+  overflow: hidden;
+  width: 250px;
+}
+
+.cardClass h4, h3 {
+  margin: 10px;
 }

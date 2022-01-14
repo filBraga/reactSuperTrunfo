@@ -15,7 +15,27 @@ class Form extends React.Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
+      hasTrunfo,
     } = this.props;
+
+    // Conditional Rendering for Trunfo
+    let trunfo;
+    if (hasTrunfo) {
+      trunfo = <p>Você já tem um Super Trunfo em seu baralho</p>;
+    } else {
+      trunfo = (
+        <label htmlFor="trunfo-input">
+          Super Trunfo:
+          <input
+            type="checkbox"
+            id="trunfo-input"
+            checked={ cardTrunfo }
+            name="cardTrunfo"
+            data-testid="trunfo-input"
+            onChange={ onInputChange }
+          />
+        </label>);
+    }
 
     return (
       <div className="formClass">
@@ -115,17 +135,7 @@ class Form extends React.Component {
             </select>
           </label>
 
-          <label htmlFor="trunfo-input">
-            Super Trunfo:
-            <input
-              type="checkbox"
-              id="trunfo-input"
-              checked={ cardTrunfo }
-              name="cardTrunfo"
-              data-testid="trunfo-input"
-              onChange={ onInputChange }
-            />
-          </label>
+          {trunfo}
 
           <button
             type="submit"
@@ -153,6 +163,7 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  hasTrunfo: PropTypes.func.isRequired,
 };
 
 export default Form;

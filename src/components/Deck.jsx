@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
-class Deck extends Component {
+class Deck extends React.Component {
   render() {
-    const { cards } = this.props;
+    const { cards, removeCardInCards } = this.props;
 
     return (
       <section>
         <h1> Cartas Registradas</h1>
-        {cards.map((card) => (
-          <div key={ card.cardAttr1 }>
+        {cards.map((card, index) => (
+          <div key={ card.cardName }>
             <Card
               cardName={ card.cardName }
               cardDescription={ card.cardDescription }
@@ -23,6 +23,8 @@ class Deck extends Component {
             />
             <button
               type="button"
+              selector={ card }
+              onClick={ removeCardInCards(index) }
             >
               Remover
             </button>
@@ -44,6 +46,7 @@ Deck.propTypes = {
     cardRare: PropTypes.string,
     cardTrunfo: PropTypes.bool,
   }).isRequired,
+  removeCardInCards: PropTypes.func.isRequired,
 };
 
 export default Deck;

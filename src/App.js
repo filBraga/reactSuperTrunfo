@@ -18,12 +18,14 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       cards: [],
+      hasTrunfo: false,
     };
     // const newArray = [...this.state.cards, 'terceira'];
     // newArray = ...this.state.cards + 'terceira'
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.removeCardInCards = this.removeCardInCards.bind(this);
   }
 
   // handleBlank Texts VALIDATION
@@ -130,6 +132,8 @@ class App extends React.Component {
     this.setState((prevState) => ({ cards: [...prevState.cards, newObject] }));
     // estudar aqui no prevState e nos Arrays. Sem modificar o array anterior
 
+    this.hasTrunfoFunc();
+
     this.clearForm();
   }
 
@@ -148,6 +152,26 @@ class App extends React.Component {
     });
   }
 
+  // removeCardInCards NAO FUNCIONA AINDA
+  removeCardInCards() {
+  //   const cards = this.state;
+  //   const newCards = cards.splice(i);
+  //   console.log(i);
+  //   this.setState({ cards: [newCards] });
+  }
+
+  // hasTrunfo
+  hasTrunfoFunc() {
+    const { cards } = this.state;
+    // console.log(cards);
+    const trunfo = cards.find((card) => card.cardTrunfo === true);
+    // console.log(trunfo);
+
+    if (trunfo !== undefined) {
+      this.setState({ hasTrunfo: false });
+    } this.setState({ hasTrunfo: true });
+  }
+
   render() {
     const {
       cardName,
@@ -160,6 +184,7 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
       cards,
+      hasTrunfo,
     } = this.state;
 
     return (
@@ -177,6 +202,7 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
@@ -188,7 +214,10 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
-        <Deck cards={ cards } />
+        <Deck
+          cards={ cards }
+          removeCardInCards={ this.removeCardInCards }
+        />
       </div>
     );
   }

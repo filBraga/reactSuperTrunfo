@@ -2,21 +2,25 @@ import React from 'react';
 import './index.css';
 import Form from './components/Form';
 import Card from './components/Card';
+import Deck from './components/Deck';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardName: 'Nome da carta',
-      cardDescription: 'Descrição da carta',
-      cardAttr1: '12',
-      cardAttr2: '34',
-      cardAttr3: '56',
-      cardImage: 'url-to-image',
-      cardRare: 'raro',
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: 'normal',
       cardTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
+      cards: [],
     };
+    // const newArray = [...this.state.cards, 'terceira'];
+    // newArray = ...this.state.cards + 'terceira'
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
@@ -95,11 +99,53 @@ class App extends React.Component {
     // https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback
   }
 
-  // handleSubmit
+  // handleSaveButton handleSubmit
   onSaveButtonClick(e) {
-    console.log(this.state);
-
     e.preventDefault();
+
+    // console.log(this.state);
+
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const newObject = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((prevState) => ({ cards: [...prevState.cards, newObject] }));
+    // estudar aqui no prevState e nos Arrays. Sem modificar o array anterior
+
+    this.clearForm();
+  }
+
+  // clearForm
+  clearForm() {
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    });
   }
 
   render() {
@@ -113,6 +159,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      cards,
     } = this.state;
 
     return (
@@ -141,6 +188,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <Deck cards={ cards } />
       </div>
     );
   }

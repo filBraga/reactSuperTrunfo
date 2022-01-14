@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import App from '../App';
 
-xdescribe("7 - Crie a validação do Super Trunfo", () => {
+describe("7 - Crie a validação do Super Trunfo", () => {
   it("Será validado se o checkbox do Super Trunfo é redenderizado ao carregar a página", () => {
     render(<App />);
     const checkboxTrunfo = screen.getByTestId(/trunfo-input/i);

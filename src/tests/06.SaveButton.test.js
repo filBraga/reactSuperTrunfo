@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import App from '../App';
 
-xdescribe("6 - Crie a função do botão salvar", () => {
+describe("6 - Crie a função do botão salvar", () => {
   it("Será validado se os campos do formulário `Nome`, `Descrição` e `Imagem` são limpos após clicar em `salvar`", () => {
     render(<App />);
     const nameInput = screen.getByTestId(/name-input/i);

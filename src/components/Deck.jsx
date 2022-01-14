@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
-export class Deck extends Component {
+class Deck extends Component {
   render() {
     const { cards } = this.props;
-    // console.log(cards);
-
-    const removeParent = () => {
-    };
 
     return (
       <section>
@@ -25,7 +21,11 @@ export class Deck extends Component {
               cardRare={ card.cardRare }
               cardTrunfo={ card.cardTrunfo }
             />
-            <button type="button" onClick={ removeParent() }>Remover</button>
+            <button
+              type="button"
+            >
+              Remover
+            </button>
           </div>
         ))}
       </section>

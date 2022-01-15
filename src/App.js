@@ -8,12 +8,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardName: '',
-      cardDescription: '',
+      cardName: 'Name',
+      cardDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       cardAttr1: '',
       cardAttr2: '',
       cardAttr3: '',
-      cardImage: '',
+      cardImage: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png',
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
@@ -132,7 +132,7 @@ class App extends React.Component {
     this.setState((prevState) => ({ cards: [...prevState.cards, newObject] }));
     // estudar aqui no prevState e nos Arrays. Sem modificar o array anterior
 
-    this.hasTrunfoFunc();
+    this.updateTrunfoFunc();
 
     this.clearForm();
   }
@@ -156,20 +156,21 @@ class App extends React.Component {
   removeCardInCards() {
   //   const cards = this.state;
   //   const newCards = cards.splice(i);
-  //   console.log(i);
+    // console.log(i);
   //   this.setState({ cards: [newCards] });
   }
 
-  // hasTrunfo
+  // hasTrunfo funciona, mas porque preciso colocar 2x?????? AAAAAAAAAAAAAAA
   hasTrunfoFunc() {
     const { cards } = this.state;
-    // console.log(cards);
-    const trunfo = cards.find((card) => card.cardTrunfo === true);
-    // console.log(trunfo);
+    const hasTrunfo = cards.some((card) => card.cardTrunfo === true);
+    this.setState({ hasTrunfo });
+  }
 
-    if (trunfo !== undefined) {
-      this.setState({ hasTrunfo: false });
-    } this.setState({ hasTrunfo: true });
+  updateTrunfoFunc() {
+    const { cards } = this.state;
+    const hasTrunfo = cards.some((card) => card.cardTrunfo === true);
+    this.setState({ hasTrunfo }, () => this.hasTrunfoFunc());
   }
 
   render() {
@@ -189,31 +190,33 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1 className="titleClass">Tryunfo by Fil</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          hasTrunfo={ hasTrunfo }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+        <h1 className="titleClass">Tryunfo by Filipe Braga</h1>
+        <div className="divClass">
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            hasTrunfo={ hasTrunfo }
+          />
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </div>
         <Deck
           cards={ cards }
           removeCardInCards={ this.removeCardInCards }

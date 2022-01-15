@@ -8,28 +8,30 @@ class Deck extends React.Component {
 
     return (
       <section>
-        <h1> Cartas Registradas</h1>
-        {cards.map((card, index) => (
-          <div key={ card.cardName }>
-            <Card
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
-            <button
-              type="button"
-              selector={ card }
-              onClick={ removeCardInCards(index) }
-            >
-              Remover
-            </button>
-          </div>
-        ))}
+        <h1 className="titleClass"> Cartas Registradas</h1>
+        <div className="divClass">
+          {cards.map((card, index) => (
+            <div key={ card.cardName }>
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <button
+                type="button"
+                selector={ card }
+                onClick={ removeCardInCards(index) }
+              >
+                Remover
+              </button>
+            </div>
+          ))}
+        </div>
       </section>
     );
   }
